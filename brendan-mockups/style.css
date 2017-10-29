@@ -1,0 +1,34 @@
+* {
+    margin: 0 auto;
+    font-size: 100%;
+  
+    background-color: black;
+    color:white;
+  }
+  
+  header {
+    margin-top: 1%;
+    padding: 3% 3% 3% 3%;
+    background-color: #661686;
+  }
+  
+  ul {
+    display: inline;
+    background-color: #661686;
+  }
+  
+  li {
+    display: inline;
+    background-color: #661686;
+    font-size: 2em;
+    margin: .5em;
+  }
+  
+  .post {
+      border: 5px solid red;
+  }
+
+  
+  #mainNav {
+    float: left;
+  }
