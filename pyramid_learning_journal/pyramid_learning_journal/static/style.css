@@ -1,0 +1,47 @@
+* {
+    margin: 0 auto;
+    font-size: 100%;
+  
+    background-color: black;
+    color:white;
+  }
+  
+  header {
+    margin-top: 1%;
+    padding: 3% 3% 3% 3%;
+    background-color: #661686;
+  }
+
+  footer {
+    position: fixed;
+    left: 0px;
+    bottom:0px;
+    width: 100%;
+    padding: 1% 1% 1% 1%;
+    background-color: #661686;
+  }
+  
+  ul {
+    display: inline;
+    background-color: #661686;
+  }
+  
+  li {
+    display: inline;
+    background-color: #661686;
+    font-size: 2em;
+    margin: .5em;
+  }
+  
+  .post {
+      border: 5px solid red;
+  }
+
+  .textbox {
+    width: 100%;
+    height: 200px;
+  }
+  
+  #mainNav {
+    float: left;
+  }
