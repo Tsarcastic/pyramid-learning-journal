@@ -25,5 +25,5 @@ if __name__ == '__main__':
     config.add_route('home', '/')
     config.add_view(hello_world, route_name='home')
     app = config.make_wsgi_app()
-    server = make_server('localhost', 6543, app)
+    server = make_server('localhost', 6544, app)
     server.serve_forever()
