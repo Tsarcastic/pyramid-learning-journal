@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="normalize.css">
   <link rel="stylesheet" href="skeleton.css">
   <link rel="stylesheet" href="style.css">
-  
+
   <title>Brendan's Blog</title>
 </head>
 <body>
@@ -19,8 +19,24 @@
     </ul>
   </header>
 <main>
+  <div class="">
+    {% if entries %}
+      {% for entry in entries %}
+        <article class="">
+          <h2><a href="{{ request.route_url('detail', id='entry.id') }}">{{ entry.title }}</a></h2>
+          <hr>
+          <p>Created {{ entry.creation_date }}</p>
+          <hr>
+          <p>{{ entry.body }}</p>
+        </article>
+      {% endfor %}
+    {% else %}
+      <p>You have no enties to list.</p>
+    {% endif %}
+  </div>
     <div class="container">
-            <form action="newEntry.html">
+
+            <!-- <form action="newEntry.html">
                     <div class="row" style="margin-top:10%">
                       <div class="six columns">
                         <label for="blogTitle">Blog Title</label>
@@ -54,14 +70,14 @@
               <h5>Date Created</h5>
           </div>
           <div class="three columns"><p></p></div>
-      </div>
-        
+      </div> -->
+
     </div>
 </main>
 <footer>
     <ul>
         <li>This is the footer. It will contain things.</li>
-    </ul>   
+    </ul>
 </footer>
 </body>
 </html>
