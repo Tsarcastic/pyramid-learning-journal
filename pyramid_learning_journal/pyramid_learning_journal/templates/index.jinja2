@@ -3,24 +3,42 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="normalize.css">
+  <!-- <link rel="stylesheet" href="normalize.css">
   <link rel="stylesheet" href="skeleton.css">
-  <link rel="stylesheet" href="style.css">
-  
+  <link rel="stylesheet" href="style.css"> -->
+
   <title>Brendan's Blog</title>
 </head>
 <body>
   <header>
     <ul id="mainNav">
       <li></li>
-      <li><a href="index.html">Entries</a></li>
+      <li><a id="home"href="{{ request.route_url('home') }}">Home</a></li>
+      <li><a id="new"href="{{ request.route_url('new') }}">New Entry</a></li>
       <li>LinkedIn</li>
       <li>About Me</li>
     </ul>
   </header>
-<main>
-    <div class="container">
-            <form action="newEntry.html">
+
+  <div class="">
+    {% block content %}{% endblock %}
+    {% if entries %}
+      {% for entry in entries %}
+        <article class="">
+          <h2><a href="{{ request.route_url('detail', id=entry.id) }}">{{ entry.id }}{{ entry.title }}</a></h2>
+          <hr>
+          <p>Created {{ entry.creation_date }}</p>
+          <hr>
+          <p>{{ entry.body }}</p>
+        </article>
+      {% endfor %}
+    {% else %}
+      <p>You have no enties to list.</p>
+    {% endif %}
+  </div>
+    <!-- <div class="container"> -->
+
+            <!-- <form action="newEntry.html">
                     <div class="row" style="margin-top:10%">
                       <div class="six columns">
                         <label for="blogTitle">Blog Title</label>
@@ -54,14 +72,14 @@
               <h5>Date Created</h5>
           </div>
           <div class="three columns"><p></p></div>
-      </div>
-        
-    </div>
-</main>
-<footer>
-    <ul>
+      </div> -->
+
+    <!-- </div> -->
+
+  <footer>
+      <ul>
         <li>This is the footer. It will contain things.</li>
-    </ul>   
-</footer>
+      </ul>
+  </footer>
 </body>
 </html>

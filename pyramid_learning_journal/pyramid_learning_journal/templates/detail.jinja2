@@ -1,0 +1,12 @@
+{% extends 'index.jinja2' %}
+
+{% block content %}
+  <main>
+    <article>
+      <h1>{{ entry.title }}</h1>
+      <hr />
+      <p>Created {{ entry.creation_date }} </p>
+      <p>{{ entry.body }}</p>
+    </article>
+  </main>
+{% endblock %}
