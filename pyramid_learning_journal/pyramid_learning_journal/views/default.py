@@ -19,8 +19,7 @@ def detail_view(request):
     """Display a detail view of entry."""
     ident = int(request.matchdict['id'])
     for entry in ENTRIES:
-        # pdb.set_trace()
-        if int(entry['id']) == ident:
+        if int(entry['id']) == ident:  # if entry.id is str
             return {'entry': entry}
 
 
