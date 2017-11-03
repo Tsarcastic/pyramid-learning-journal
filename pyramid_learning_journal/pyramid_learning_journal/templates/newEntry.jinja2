@@ -1,4 +1,26 @@
-<!DOCTYPE html>
+
+{% block title %}New Entry{% endblock %}
+
+{% block body %}
+<h2>Add a new entry:</h2>
+
+<form class="new_entry" method="POST">
+  <p>
+    <label for="title">Title: </label>
+    <input type="text" name="title">
+  </p>
+  <p>
+    <label for="body">Entry</label>
+    <input type="text" name="body">
+  </p>
+  <p>
+    <input type="submit" name="Add Entry">
+  </p>
+</form>
+
+{% endblock %}
+
+<!-- <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -6,7 +28,7 @@
   <link rel="stylesheet" href="normalize.css">
   <link rel="stylesheet" href="skeleton.css">
   <link rel="stylesheet" href="style.css">
-  
+
   <title>New Entry</title>
 </head>
 <body>
@@ -31,11 +53,11 @@
                     <textarea class="textbox" class="textbox" placeholder="Today in class I learned a great many things!"></textarea>
                     <input class="button-primary" type="submit" value="Submit">
             </form>
-    </div>   
+    </div>
     <footer>
         <ul>
             <li>This is the footer. It will contain things.</li>
-        </ul>   
+        </ul>
     </footer>
     </body>
-    </html>
+    </html> -->

@@ -4,6 +4,7 @@ import io
 import os
 from pyramid.view import view_config
 from entries import ENTRIES
+import pdb
 HERE = os.path.dirname(__file__)
 
 
@@ -16,18 +17,17 @@ def list_view(request):
 @view_config(route_name='detail', renderer='../templates/detail.jinja2')
 def detail_view(request):
     """Display a detail view of entry."""
-    return {
-        'title': 'a title',
-        'creation_date': 'whatever',
-        'body': 'my body'
-        }
+    ident = int(request.matchdict['id'])
+    for entry in ENTRIES:
+        # pdb.set_trace()
+        if int(entry['id']) == ident:
+            return {'entry': entry}
 
 
+@view_config(route_name='new', renderer='../templates/newEntry.jinja2')
 def create_view(request):
     """Display create a list entry."""
-    path = os.path.join(HERE, '../templates/entry.html')
-    with io.open(path) as res:
-        return Response(res.read())
+    return {}
 
 
 def update_view(request):
