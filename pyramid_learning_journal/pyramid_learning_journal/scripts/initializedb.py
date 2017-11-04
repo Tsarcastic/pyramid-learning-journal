@@ -16,6 +16,8 @@ from ..models import (
     get_tm_session,
     )
 from ..models import MyModel
+from entries import ENTRIES
+from datetime import datetime
 
 
 def usage(argv):
@@ -34,4 +36,20 @@ def main(argv=sys.argv):
     settings = get_appsettings(config_uri, options=options)
 
     engine = get_engine(settings)
+    Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
+
+    session_factory = get_session_factory(engine)
+    with transaction.manager:
+        dbsession = get_tm_session(session_factory, transaction.manager)
+        many_entries = []
+        for entry in ENTRIES:
+            new_entry = MyModel(
+                title=entry["title"],
+                body=entry["body"],
+                creation_date=datetime.now(),
+                # name=entry["name"],
+            )
+            many_entries.append(new_entry)
+        dbsession.add_all(many_entries)
+        # dbsession.commit()

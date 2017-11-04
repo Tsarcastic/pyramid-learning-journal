@@ -4,6 +4,8 @@ import io
 import os
 from pyramid.view import view_config
 from entries import ENTRIES
+from ..models import MyModel
+
 import pdb
 HERE = os.path.dirname(__file__)
 
@@ -11,7 +13,8 @@ HERE = os.path.dirname(__file__)
 @view_config(route_name='home', renderer='../templates/index.jinja2')
 def list_view(request):
     """Display the list of entries."""
-    return {'entries': ENTRIES}
+    entries = request.dbsession.query(MyModel).all()
+    return {'entries': entries}
 
 
 @view_config(route_name='detail', renderer='../templates/detail.jinja2')
