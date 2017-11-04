@@ -21,9 +21,10 @@ def list_view(request):
 def detail_view(request):
     """Display a detail view of entry."""
     ident = int(request.matchdict['id'])
-    for entry in ENTRIES:
-        if int(entry['id']) == ident:  # if entry.id is str
-            return {'entry': entry}
+    entry = request.dbsession.query(MyModel).get(ident)
+    if not entry:
+        return Response('not-found', status=404)
+    return {"entry": entry}
 
 
 @view_config(route_name='new', renderer='../templates/newEntry.jinja2')

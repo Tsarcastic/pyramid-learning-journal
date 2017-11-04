@@ -14,3 +14,4 @@ def includeme(config):
     config.add_view(detail_view, route_name='detail')
     config.add_view(create_view, route_name='new')
     config.add_view(update_view, route_name='edit')
+    config.add_view(update_view, route_name='not-found')
