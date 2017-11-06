@@ -8,5 +8,6 @@
       <p>Created {{ entry.creation_date }} </p>
       <p>{{ entry.body }}</p>
     </article>
+    <p><a href="{{ request.route_url('edit', id=entry.id) }}">Edit</a></p>
   </main>
 {% endblock %}

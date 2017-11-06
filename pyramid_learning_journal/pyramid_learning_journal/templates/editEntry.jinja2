@@ -1,0 +1,19 @@
+{% extends 'index.jinja2' %}
+
+{% block content %}
+<h1>Edit entry:</h1>
+<form method="POST">
+    <p>
+        <label for="title">Title: </label>
+        <input type="text" name="title" value="{{ entry.title }}"/>
+    </p>
+    <p>
+        <label for="body">Body: </label>
+        <input type='text' name="body" value='{{ entry.body }}''>
+    </p>
+    <p>
+        <input type="submit" name="Edit Entry" />
+    </p>
+</form>
+
+{% endblock %}
