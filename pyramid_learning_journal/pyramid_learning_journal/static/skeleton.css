@@ -167,7 +167,7 @@ a:hover {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .button,
 button,
-input[type="submit"],
+/*input[type="submit"],
 input[type="reset"],
 input[type="button"] {
   display: inline-block;
@@ -186,52 +186,52 @@ input[type="button"] {
   border-radius: 4px;
   border: 1px solid #bbb;
   cursor: pointer;
-  box-sizing: border-box; }
+  box-sizing: border-box; }*/
 .button:hover,
 button:hover,
-input[type="submit"]:hover,
+/*input[type="submit"]:hover,
 input[type="reset"]:hover,
-input[type="button"]:hover,
+input[type="button"]:hover,*/
 .button:focus,
 button:focus,
-input[type="submit"]:focus,
+/*input[type="submit"]:focus,
 input[type="reset"]:focus,
 input[type="button"]:focus {
   color: #333;
   border-color: #888;
-  outline: 0; }
+  outline: 0; }*/
 .button.button-primary,
 button.button-primary,
-input[type="submit"].button-primary,
+/*input[type="submit"].button-primary,
 input[type="reset"].button-primary,
 input[type="button"].button-primary {
   color: #FFF;
   background-color: #33C3F0;
-  border-color: #33C3F0; }
+  border-color: #33C3F0; }*/
 .button.button-primary:hover,
 button.button-primary:hover,
-input[type="submit"].button-primary:hover,
+/*input[type="submit"].button-primary:hover,
 input[type="reset"].button-primary:hover,
-input[type="button"].button-primary:hover,
+input[type="button"].button-primary:hover,*/
 .button.button-primary:focus,
 button.button-primary:focus,
-input[type="submit"].button-primary:focus,
+/*input[type="submit"].button-primary:focus,
 input[type="reset"].button-primary:focus,
-input[type="button"].button-primary:focus {
-  color: #FFF;
+input[type="button"].button-primary:focus {*/
+  /*color: #FFF;
   background-color: #1EAEDB;
-  border-color: #1EAEDB; }
+  border-color: #1EAEDB; }*/
 
 
 /* Forms
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-input[type="email"],
+/*input[type="email"],
 input[type="number"],
 input[type="search"],
 input[type="text"],
 input[type="tel"],
 input[type="url"],
-input[type="password"],
+input[type="password"],*/
 textarea,
 select {
   height: 38px;
@@ -242,13 +242,13 @@ select {
   box-shadow: none;
   box-sizing: border-box; }
 /* Removes awkward default styles on some inputs for iOS */
-input[type="email"],
+/*input[type="email"],
 input[type="number"],
 input[type="search"],
 input[type="text"],
 input[type="tel"],
 input[type="url"],
-input[type="password"],
+input[type="password"],*/
 textarea {
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -257,13 +257,13 @@ textarea {
   min-height: 65px;
   padding-top: 6px;
   padding-bottom: 6px; }
-input[type="email"]:focus,
+/*input[type="email"]:focus,
 input[type="number"]:focus,
 input[type="search"]:focus,
 input[type="text"]:focus,
 input[type="tel"]:focus,
 input[type="url"]:focus,
-input[type="password"]:focus,
+input[type="password"]:focus,*/
 textarea:focus,
 select:focus {
   border: 1px solid #33C3F0;
@@ -276,9 +276,9 @@ legend {
 fieldset {
   padding: 0;
   border-width: 0; }
-input[type="checkbox"],
+/*input[type="checkbox"],
 input[type="radio"] {
-  display: inline; }
+  display: inline; }*/
 label > .label-body {
   display: inline-block;
   margin-left: .5rem;
