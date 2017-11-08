@@ -15,8 +15,9 @@ HERE = os.path.dirname(__file__)
 @view_config(route_name='home', renderer='../templates/index.jinja2')
 def list_view(request):
     """Display the list of entries."""
+    # pdb.set_trace()
     query = request.dbsession.query(MyModel)
-    entries = query.order_by(MyModel.creation_date.desc()).all()
+    entries = query.order_by(MyModel.id.desc()).all()
     return {'entries': entries}
 
 

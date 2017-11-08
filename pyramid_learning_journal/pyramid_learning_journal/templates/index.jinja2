@@ -6,7 +6,9 @@
   <!-- <link rel="stylesheet" href="normalize.css">
   <link rel="stylesheet" href="skeleton.css">
   <link rel="stylesheet" href="style.css"> -->
-
+  <link href="{{request.static_url('pyramid_learning_journal:static/normalize.css')}}" rel="stylesheet">
+  <link href="{{request.static_url('pyramid_learning_journal:static/skeleton.css')}}" rel="stylesheet">
+  <link href="{{request.static_url('pyramid_learning_journal:static/style.css')}}" rel="stylesheet">
   <title>Brendan's Blog</title>
 </head>
 <body>
@@ -36,46 +38,6 @@
       <p>You have no enties to list.</p>
     {% endif %}
   </div>
-    <!-- <div class="container"> -->
-
-            <!-- <form action="newEntry.html">
-                    <div class="row" style="margin-top:10%">
-                      <div class="six columns">
-                        <label for="blogTitle">Blog Title</label>
-                        <input class="u-full-width" type="text" placeholder="Today I Learned">
-                      </div>
-                    </div>
-                    <label for="exampleText">Entry</label>
-                    <textarea class="u-full-width" placeholder="Today in class I learned"></textarea>
-                    <input class="button-primary" type="submit" value="Submit">
-                  </form>
-        <div class="row" style="margin-top: 10%">
-            <div class="three columns"><p></p></div>
-            <div class="six columns" class="post">
-                <h3><a href="detail.html">Name of blog entry</h3>
-                <h5>Date Created</h5>
-            </div>
-            <div class="three columns"><p></p></div>
-        </div>
-        <div class="row" style="margin-top: 10%">
-                <div class="three columns"><p></p></div>
-                <div class="six columns" class="post">
-                    <h3><a href="detail.html">Different blog entry</h3>
-                    <h5>Date Created</h5>
-                </div>
-                <div class="three columns"><p></p></div>
-        </div>
-        <div class="row" style="margin-top: 10%">
-          <div class="three columns"><p></p></div>
-          <div class="six columns" class="post">
-              <h3><a href="detail.html">Name of blog entry</h3>
-              <h5>Date Created</h5>
-          </div>
-          <div class="three columns"><p></p></div>
-      </div> -->
-
-    <!-- </div> -->
-
   <footer>
       <ul>
         <li>This is the footer. It will contain things.</li>

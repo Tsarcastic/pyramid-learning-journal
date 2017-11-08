@@ -52,4 +52,3 @@ def main(argv=sys.argv):
             )
             many_entries.append(new_entry)
         dbsession.add_all(many_entries)
-        # dbsession.commit()
