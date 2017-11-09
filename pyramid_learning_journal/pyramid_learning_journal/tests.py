@@ -1,9 +1,6 @@
-import unittest
-import transaction
-import pytest
-from pyramid import testing
-from pyramid_learning_journal.models import MyModel, get_tm_session
-from pyramid_learning_journal.models.meta import Base
+
+from datetime import datetime
+from pyramid_learning_journal.models import MyModel
 from pyramid_learning_journal.views.default import (
     list_view,
     detail_view,
@@ -11,88 +8,63 @@ from pyramid_learning_journal.views.default import (
     create_view
     )
 
-import random
-import datetime
+
+def test_home_route_get_request_200_ok(testapp):
+    """."""
+    response = testapp.get('/')
+    assert response.status_code == 200
 
 
-def dummy_request(dbsession):
-    return testing.DummyRequest(dbsession=dbsession)
+def test_home_with_no_entries(testapp):
+    """."""
+    response = testapp.get('/')
+    html = response.html
+    content = html.find('div')
+    assert 'article' not in content
 
 
-class BaseTest(unittest.TestCase):
-    def setUp(self):
-        self.config = testing.setUp(settings={
-            'sqlalchemy.url': 'sqlite:///:memory:'
-        })
-        self.config.include('.models')
-        settings = self.config.get_settings()
-
-        from .models import (
-            get_engine,
-            get_session_factory,
-            get_tm_session,
-            )
-
-        self.engine = get_engine(settings)
-        session_factory = get_session_factory(self.engine)
-
-        self.session = get_tm_session(session_factory, transaction.manager)
-
-    def init_database(self):
-        from .models.meta import Base
-        Base.metadata.create_all(self.engine)
-
-    def tearDown(self):
-        from .models.meta import Base
-
-        testing.tearDown()
-        transaction.abort()
-        Base.metadata.drop_all(self.engine)
+def test_create_view_post_empty_is_empty_dict(dummy_request):
+    """POST requests without data should return an empty dictionary."""
+    dummy_request.method = "POST"
+    response = create_view(dummy_request)
+    assert response == {}
 
 
-
-# import faker
-# def test_list_view_returns_200():
-
-ENTRIES = [
-    {
-        'title': "Day 13",
-        'text': "### Today I learned: - Implement priority queue - SQLAlchemy (avoid sql injection security risk) - object relational mapper (translation layer your code --> SQL) - models/mymodels.py -- import models in models/__init__ - in model import Unicode Float DateTime - add correct Columns - set create date.now() in __init__ for model class - add and commit to get it in your db - many query methods - initializedb.py ---line 38:--- Base.metadata.drop_all(engine) - initdb development.ini - set in ENV/bin/activate export DATABASE_URL=' postgres://localhost:5432/learning_journal' - os.eviron[DATABASE_URL] - remove from development.ini and production - update __init__.py settings['sqlalchemy.url'] = os.eviron[DATABASE_URL] - then initializedb.py same line",
-        'author': {
-            'course_id': [
-                "sea401d7"
-                ],
-            'username': "ChristopherSClosser",
-            'id': 45,
-            'display_name': "ChristopherSClosser"
-        },
-        'id': 893,
-        'markdown': "<h3>Today I learned:</h3> <ul> <li>Implement priority queue</li> <li>SQLAlchemy (avoid sql injection security risk)<ul> <li>object relational mapper (translation layer your code --&gt; SQL)</li> </ul> </li> <li>models/mymodels.py -- import models in models/<strong>init</strong></li> <li>in model import Unicode Float DateTime<ul> <li>add correct Columns</li> <li>set create date.now() in <strong>init</strong> for model class</li> </ul> </li> <li>add and commit to get it in your db</li> <li>many query methods</li> <li>initializedb.py ---line 38:--- Base.metadata.drop_all(engine)<ul> <li>initdb development.ini</li> </ul> </li> <li>set in ENV/bin/activate export DATABASE_URL=' postgres://localhost:5432/learning_journal'</li> <li>os.eviron[DATABASE_URL]</li> <li>remove from development.ini and production</li> <li>update <strong>init</strong>.py settings['sqlalchemy.url'] = os.eviron[DATABASE_URL]<ul> <li>then initializedb.py same line</li> </ul> </li> </ul>",
-        'created': "2017-11-02T01:20:34.210642"
-    },
-    {
-        'title': "Day 12",
-        'text': "### Today I learned - Binary heap min and max - Start to Implement max heap - Using jinja2 templates - MVC - Pyramid Renderers - Group project selection",
-
-        'id': 888,
-        'markdown': "<h3>Today I learned</h3> <ul> <li>Binary heap min and max<ul> <li>Start to Implement max heap</li> </ul> </li> <li>Using jinja2 templates</li> <li>MVC</li> <li>Pyramid Renderers</li> <li>Group project selection</li> </ul>",
-        'created': "2017-11-01T15:33:24.823650"
-    }]
+def test_home_with_one_entry(testapp, fill_my_db):
+    """."""
+    response = testapp.get('/')
+    html = response.html
+    content = html.find_all('article')
+    assert len(content) == 1
 
 
-@pytest.fixture
-def dummy_request():
-    """Instantiate a fake HTTP Request, complete with a database session.
-    This is a function-level fixture, so every new request will have a
-    new database session.
-    """
-    return {'entries': ENTRIES}
+def test_home_with_many_entries(testapp, more_db):
+    """."""
+    response = testapp.get('/')
+    html = response.html
+    content = html.find_all('article')
+    assert len(content) == 4
 
 
-def test_list_view_returns_objects(dummy_request):
-    """Test that the list view does return objects when the entries is populated.
-    """
-    result = list_view(dummy_request)
-    for item in result['entries']:
-        print(item)
-    assert len(result["entries"]) == 13
+def test_add_new_entry_200(testapp, dummy_request):
+    """."""
+    dummy_request.method = testapp.get('/journal/new-entry')
+    assert dummy_request.response.status == '200 OK'
+
+
+def test_add_new_entry_something(testapp, dummy_request):
+    """."""
+    dummy_request.method = testapp.get('/journal/new-entry')
+    entry = MyModel(
+        title='Test Title',
+        body='This is a test body of text.',
+        creation_date=datetime.now()
+        )
+
+
+def test_create_view_returns_title(dummy_request):
+    """Update view response has file content."""
+    from pyramid_learning_journal.views.default import create_view
+    request = dummy_request
+    response = create_view(request)
+    assert response == {}
